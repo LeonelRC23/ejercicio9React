@@ -1,0 +1,19 @@
+.textContainer {
+    border: 1px solid #000;
+}
+
+.formContainer {
+    border: 1px solid #000;
+}
+
+.labelLarge {
+    width: 150px;
+}
+
+.labelSmall {
+    width: 350px;
+}
+
+.formButton {
+    border: 1px solid #000;
+}
