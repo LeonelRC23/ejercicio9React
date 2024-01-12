@@ -3,6 +3,11 @@
 }
 
 .contentContainer {
+    background-color: rgb(191, 221, 231);
     min-height: 300px;
     border: 1px solid #000;
+}
+
+.citasText {
+    font-weight: 700;
 }

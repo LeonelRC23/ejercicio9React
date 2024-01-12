@@ -1,13 +1,16 @@
 import React from "react";
 import "../styles/citasContainer.css";
+import CitaCard from "./CitaCard";
 
 const CitasContainer = () => {
   return (
     <div className="my-5">
       <div className="stateCitasContainer">
-        <p>No hay citas</p>
+        <p className="text-center m-0 p-4 citasText">No hay citas</p>
       </div>
-      <div className="contentContainer"></div>
+      <div className="contentContainer row m-0">
+        <CitaCard/>
+      </div>
     </div>
   );
 };
