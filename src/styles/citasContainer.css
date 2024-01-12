@@ -1,0 +1,8 @@
+.stateCitasContainer {
+    border: 1px solid #000;
+}
+
+.contentContainer {
+    min-height: 300px;
+    border: 1px solid #000;
+}

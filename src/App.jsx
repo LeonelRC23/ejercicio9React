@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import PrincipalForm from "./components/PrincipalForm";
+import CitasContainer from "./components/CitasContainer";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
           Administrador de pacientes de veterinaria
         </h1>
         <PrincipalForm />
+        <CitasContainer/>
       </div>
     </>
   );
