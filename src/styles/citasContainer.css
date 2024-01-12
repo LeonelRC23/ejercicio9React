@@ -1,13 +1,12 @@
 .stateCitasContainer {
-    border: 1px solid #000;
+  border: 1px solid #000;
 }
 
 .contentContainer {
-    background-color: rgb(191, 221, 231);
-    min-height: 300px;
-    border: 1px solid #000;
+  min-height: 300px;
+  border: 1px solid #000;
 }
 
 .citasText {
-    font-weight: 700;
+  font-weight: 700;
 }
