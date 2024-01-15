@@ -51,7 +51,7 @@ const PrincipalForm = () => {
           }}
           onSubmit={(valores, { resetForm }) => {
             chagedValues.nombreMascota = valores.nombreMascota;
-            console.log(chagedValues.nombreMascota);
+            console.log(chagedValues);
             resetForm();
           }}
         >
@@ -64,7 +64,7 @@ const PrincipalForm = () => {
             errors,
             touched,
           }) => (
-            <Form>
+            <Form onSubmit={handleSubmit}>
               <div className="formContainer p-4">
                 <Form.Group className="d-flex py-3">
                   <Form.Label className="m-0 labelLarge">
@@ -79,7 +79,6 @@ const PrincipalForm = () => {
                       className="p-0 px-3 inputLarge"
                       onBlur={handleBlur}
                       onChange={handleChange}
-                      onSubmit={handleSubmit}
                     />
                     {/* Como hacer que el div ocupe e tamaño del texto de error asi no este cambiando de tamaño el contenedor */}
                     {touched.nombreMascota && errors.nombreMascota && (
@@ -102,7 +101,6 @@ const PrincipalForm = () => {
                       className="p-0 px-3 inputLarge"
                       onBlur={handleBlur}
                       onChange={handleChange}
-                      onSubmit={handleSubmit}
                     />
                     {touched.nombreDueño && errors.nombreDueño && (
                       <div className="px-3 text-danger">
@@ -120,8 +118,7 @@ const PrincipalForm = () => {
                       name="fecha"
                       placeholder="dd/mm/yyyy"
                       onBlur={handleBlur}
-                      // onChange={handleChange}
-                      onSubmit={handleSubmit}
+                      onChange={handleChange}
                     />
                     {touched.fecha && errors.fecha && (
                       <div className="px-3 text-danger">{errors.fecha}</div>
@@ -138,7 +135,6 @@ const PrincipalForm = () => {
                       placeholder="hh:mm"
                       onBlur={handleBlur}
                       onChange={handleChange}
-                      onSubmit={handleSubmit}
                     />
                     {touched.Hora && errors.Hora && (
                       <div className="px-3 text-danger">{errors.Hora}</div>
@@ -156,7 +152,6 @@ const PrincipalForm = () => {
                       placeholder="Describir sintomas"
                       onBlur={handleBlur}
                       onChange={handleChange}
-                      onSubmit={handleSubmit}
                     />
                     {touched.sintomas && errors.sintomas && (
                       <div className="px-3 text-danger">{errors.sintomas}</div>
