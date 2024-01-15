@@ -11,6 +11,13 @@ const PrincipalForm = () => {
     Hora: "",
     sintomas: "",
   };
+  let chagedValues = {
+    nombreMascota: "",
+    nombreDueño: "",
+    fecha: "",
+    Hora: "",
+    sintomas: "",
+  };
   return (
     <div className="principalDiv">
       <div className="p-4 textContainer">
@@ -20,71 +27,151 @@ const PrincipalForm = () => {
         <Formik
           initialValues={valuesForm}
           validate={(values) => {
-            let errors = {};
+            let errores = {};
             if (values.nombreMascota.trim() === "") {
-              errors.nombreMascota = "Campo requerido.";
+              errores.nombreMascota = "Campo requerido.";
             } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.nombreMascota)) {
-              errors.nombreMascota = "Ingrese nombre valido.";
+              errores.nombreMascota = "Ingrese nombre valido.";
             }
             if (values.nombreDueño.trim() === "") {
-              errors.nombreDueño = "Campo requerido.";
+              errores.nombreDueño = "Campo requerido.";
             } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.nombreDueño)) {
-              errors.nombreDueño = "Ingrese un nombre valido.";
+              errores.nombreDueño = "Ingrese un nombre valido.";
+            }
+            if (values.sintomas.trim() === "") {
+              errores.sintomas = "Campo requerido.";
             }
             if (values.fecha === "") {
-              errors.fecha = "Campo requerido.";
+              errores.fecha = "Campo requerido.";
             }
             if (values.Hora === "") {
-              errors.Hora = "Campo requerido.";
+              errores.Hora = "Campo requerido.";
             }
-            return errors;
+            return errores;
+          }}
+          onSubmit={(valores, { resetForm }) => {
+            chagedValues.nombreMascota = valores.nombreMascota;
+            console.log(chagedValues.nombreMascota);
+            resetForm();
           }}
         >
-          <Form>
-            <div className="formContainer p-4">
-              <Form.Group className="d-flex py-3">
-                <Form.Label className="m-0 labelLarge">
-                  Nombre de la mascota:{" "}
-                </Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Nombre de la mascota"
-                  className="p-0 px-3 inputLarge"
-                />
-              </Form.Group>
-              <Form.Group className="d-flex py-3">
-                <Form.Label className="m-0 labelLarge">
-                  Nombre del dueño:
-                </Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Nombre del dueño"
-                  className="p-0 px-3"
-                />
-              </Form.Group>
-              <Form.Group className="d-flex py-3">
-                <Form.Label className="m-0 labelSmall">Fecha:</Form.Label>
-                <Form.Control type="date" placeholder="dd/mm/yyyy" />
-                <Form.Label className="m-0 labelSmall text-center">
-                  Hora:
-                </Form.Label>
-                <Form.Control type="time" placeholder="hh:mm" />
-              </Form.Group>
-              <Form.Group className="d-flex py-3">
-                <Form.Label className="m-0 labelLarge">Sintomas: </Form.Label>
-                <Form.Control
-                  className="inputLarge"
-                  type="text"
-                  placeholder="Describir sintomas"
-                />
-              </Form.Group>
-            </div>
-            <div className="formButton p-4 text-center">
-              <Button className="boton">
-                <p className="my-1 mx-4">Agregar nueva cita</p>
-              </Button>
-            </div>
-          </Form>
+          {({
+            handleBlur,
+            handleChange,
+            handleReset,
+            handleSubmit,
+            values,
+            errors,
+            touched,
+          }) => (
+            <Form>
+              <div className="formContainer p-4">
+                <Form.Group className="d-flex py-3">
+                  <Form.Label className="m-0 labelLarge">
+                    Nombre de la mascota:{" "}
+                  </Form.Label>
+                  <div className="w-100">
+                    <Form.Control
+                      type="text"
+                      id="nombreMascota"
+                      name="nombreMascota"
+                      placeholder="Nombre de la mascota"
+                      className="p-0 px-3 inputLarge"
+                      onBlur={handleBlur}
+                      onChange={handleChange}
+                      onSubmit={handleSubmit}
+                    />
+                    {/* Como hacer que el div ocupe e tamaño del texto de error asi no este cambiando de tamaño el contenedor */}
+                    {touched.nombreMascota && errors.nombreMascota && (
+                      <div className="px-3 text-danger">
+                        {errors.nombreMascota}
+                      </div>
+                    )}
+                  </div>
+                </Form.Group>
+                <Form.Group className="d-flex py-3">
+                  <Form.Label className="m-0 labelLarge">
+                    Nombre del dueño:
+                  </Form.Label>
+                  <div className="w-100">
+                    <Form.Control
+                      type="text"
+                      id="nombreDueño"
+                      name="nombreDueño"
+                      placeholder="Nombre del dueño"
+                      className="p-0 px-3 inputLarge"
+                      onBlur={handleBlur}
+                      onChange={handleChange}
+                      onSubmit={handleSubmit}
+                    />
+                    {touched.nombreDueño && errors.nombreDueño && (
+                      <div className="px-3 text-danger">
+                        {errors.nombreDueño}
+                      </div>
+                    )}
+                  </div>
+                </Form.Group>
+                <Form.Group className="d-flex py-3">
+                  <Form.Label className="m-0 labelSmall">Fecha:</Form.Label>
+                  <div className="w-100">
+                    <Form.Control
+                      type="date"
+                      id="fecha"
+                      name="fecha"
+                      placeholder="dd/mm/yyyy"
+                      onBlur={handleBlur}
+                      // onChange={handleChange}
+                      onSubmit={handleSubmit}
+                    />
+                    {touched.fecha && errors.fecha && (
+                      <div className="px-3 text-danger">{errors.fecha}</div>
+                    )}
+                  </div>
+                  <Form.Label className="m-0 labelSmall text-center">
+                    Hora:
+                  </Form.Label>
+                  <div className="w-100">
+                    <Form.Control
+                      type="time"
+                      id="Hora"
+                      name="Hora"
+                      placeholder="hh:mm"
+                      onBlur={handleBlur}
+                      onChange={handleChange}
+                      onSubmit={handleSubmit}
+                    />
+                    {touched.Hora && errors.Hora && (
+                      <div className="px-3 text-danger">{errors.Hora}</div>
+                    )}
+                  </div>
+                </Form.Group>
+                <Form.Group className="d-flex py-3">
+                  <Form.Label className="m-0 labelLarge">Sintomas: </Form.Label>
+                  <div className="w-100">
+                    <Form.Control
+                      className="inputLarge"
+                      type="text"
+                      id="sintomas"
+                      name="sintomas"
+                      placeholder="Describir sintomas"
+                      onBlur={handleBlur}
+                      onChange={handleChange}
+                      onSubmit={handleSubmit}
+                    />
+                    {touched.sintomas && errors.sintomas && (
+                      <div className="px-3 text-danger">{errors.sintomas}</div>
+                    )}
+                  </div>
+                </Form.Group>
+              </div>
+              {/* el formulario no deveria enviarse cuando los inputs estan vacios pero lo hace  */}
+              <div className="formButton p-4 text-center">
+                <Button className="boton" type="submit">
+                  <p className="my-1 mx-4">Agregar nueva cita</p>
+                </Button>
+              </div>
+            </Form>
+          )}
         </Formik>
       </div>
     </div>
