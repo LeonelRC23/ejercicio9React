@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Formik } from "formik";
 import "../styles/principalForm.css";
 
 const PrincipalForm = () => {
+  const [almacenamiento, setAlmacenamiento] = useState([]);
   let valuesForm = {
     nombreMascota: "",
     nombreDueño: "",
@@ -11,13 +12,9 @@ const PrincipalForm = () => {
     Hora: "",
     sintomas: "",
   };
-  let chagedValues = {
-    nombreMascota: "",
-    nombreDueño: "",
-    fecha: "",
-    Hora: "",
-    sintomas: "",
-  };
+  useEffect(() => {
+    setAlmacenamiento(JSON.parse(localStorage.getItem("consulta")) || []);
+  }, []);
   return (
     <div className="principalDiv">
       <div className="p-4 textContainer">
@@ -50,9 +47,14 @@ const PrincipalForm = () => {
             return errores;
           }}
           onSubmit={(valores, { resetForm }) => {
-            chagedValues.nombreMascota = valores.nombreMascota;
-            console.log(chagedValues);
-            resetForm();
+            const almacenamiento =
+              JSON.parse(localStorage.getItem("consulta")) || [];
+            if (almacenamiento.length == 0) {
+              localStorage.setItem("consulta", JSON.stringify([valores]));
+            } else {
+              almacenamiento.push(valores);
+              localStorage.setItem("consulta", JSON.stringify(almacenamiento));
+            }
           }}
         >
           {({
