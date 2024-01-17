@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
+import CitasContainer from "./CitasContainer";
 import { Button, Form } from "react-bootstrap";
 import { Formik } from "formik";
 import "../styles/principalForm.css";
 
 const PrincipalForm = () => {
-  const [almacenamiento, setAlmacenamiento] = useState([]);
+  const [almacenamientoState, setAlmacenamientoState] = useState([]);
   let valuesForm = {
     nombreMascota: "",
     nombreDueño: "",
@@ -13,7 +14,7 @@ const PrincipalForm = () => {
     sintomas: "",
   };
   useEffect(() => {
-    setAlmacenamiento(JSON.parse(localStorage.getItem("consulta")) || []);
+    setAlmacenamientoState(JSON.parse(localStorage.getItem("consulta")) || []);
   }, []);
   return (
     <div className="principalDiv">
@@ -47,6 +48,7 @@ const PrincipalForm = () => {
             return errores;
           }}
           onSubmit={(valores, { resetForm }) => {
+            resetForm();
             const almacenamiento =
               JSON.parse(localStorage.getItem("consulta")) || [];
             if (almacenamiento.length == 0) {
@@ -55,6 +57,7 @@ const PrincipalForm = () => {
               almacenamiento.push(valores);
               localStorage.setItem("consulta", JSON.stringify(almacenamiento));
             }
+            console.log(almacenamientoState);
           }}
         >
           {({
@@ -171,6 +174,7 @@ const PrincipalForm = () => {
           )}
         </Formik>
       </div>
+      <CitasContainer almacenamientoState={almacenamientoState}/>
     </div>
   );
 };

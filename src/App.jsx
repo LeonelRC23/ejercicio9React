@@ -11,7 +11,7 @@ function App() {
           Administrador de pacientes de veterinaria
         </h1>
         <PrincipalForm />
-        <CitasContainer/>
+        
       </div>
     </>
   );
