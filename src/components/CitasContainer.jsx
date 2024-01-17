@@ -8,7 +8,10 @@ const CitasContainer = () => {
   useEffect(() => {
     setAlmacenamientoCitas(JSON.parse(localStorage.getItem("consulta")) || []);
   }, []);
-
+  let deleteCard = (indice) => {
+    const citasFilter = almacenamientoCitas.filter((cita) => cita !== indice);
+    setAlmacenamientoCitas(citasFilter);
+  }
   return (
     <div className="my-5 citasContainer">
       <div className="stateCitasContainer">
@@ -16,7 +19,7 @@ const CitasContainer = () => {
       </div>
       <div className="contentContainer row m-0">
         {almacenamientoCitas.map((objeto, indice) => (
-          <CitaCard key={indice} citaDatos={objeto} />
+          <CitaCard key={indice} citaDatos={objeto} indice={indice} deleteCard={deleteCard}/>
         ))}
       </div>
     </div>

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/citaCard.css";
 import { Button, Form } from "react-bootstrap";
 
-const CitaCard = ({citaDatos}) => {
+const CitaCard = ({citaDatos, indice, deleteCard}) => {
   console.log(citaDatos);
   return (
     <div className="col-6 p-0 p-2 card">
@@ -36,7 +36,7 @@ const CitaCard = ({citaDatos}) => {
         </Form>
       </div>
       <div className="m-4 d-flex justify-content-end botonContainer">
-        <Button>Borrar</Button>
+        <Button type="submit" onClick={() => deleteCard(indice)}>Borrar</Button>
       </div>
     </div>
   );
