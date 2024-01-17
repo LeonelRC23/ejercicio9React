@@ -2,7 +2,8 @@ import React from "react";
 import "../styles/citaCard.css";
 import { Button, Form } from "react-bootstrap";
 
-const CitaCard = () => {
+const CitaCard = ({citaDatos}) => {
+  console.log(citaDatos);
   return (
     <div className="col-6 p-0 p-2 card">
       <div className="cardHeader d-flex py-3">
@@ -14,23 +15,23 @@ const CitaCard = () => {
           />
         </div>
         <div className="d-flex flex-column justify-content-center mx-3">
-          <p className="m-0">Mascota: Roco</p>
-          <p className="m-0">Dueño: Leonel</p>
+          <p className="m-0">Mascota: {citaDatos.nombreMascota}</p>
+          <p className="m-0">Dueño: {citaDatos.nombreDueño}</p>
         </div>
       </div>
       <div className="cardBody">
         <Form className="px-3">
           <Form.Group className="d-flex py-3">
             <Form.Label className="cardLabel m-0 text-center">Fecha:</Form.Label>
-            <Form.Control type="date" placeholder="dd/mm/yyyy" />
+            <Form.Control type="date" defaultValue={citaDatos.fecha} disabled/>
           </Form.Group>
           <Form.Group className="d-flex py-3">
             <Form.Label className="cardLabel m-0 text-center">Hora:</Form.Label>
-            <Form.Control type="time" placeholder="Datos cargados" />
+            <Form.Control type="time" defaultValue={citaDatos.Hora} disabled/>
           </Form.Group>
           <Form.Group className="d-flex py-3">
             <Form.Label className="cardLabel m-0 text-center">Sintomas:</Form.Label>
-            <Form.Control type="text" placeholder="Datos cargados" />
+            <Form.Control type="text" defaultValue={citaDatos.sintomas} disabled />
           </Form.Group>
         </Form>
       </div>

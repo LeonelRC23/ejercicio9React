@@ -57,7 +57,7 @@ const PrincipalForm = () => {
               almacenamiento.push(valores);
               localStorage.setItem("consulta", JSON.stringify(almacenamiento));
             }
-            console.log(almacenamientoState);
+            window.location.reload(); //mala practica
           }}
         >
           {({
@@ -174,7 +174,6 @@ const PrincipalForm = () => {
           )}
         </Formik>
       </div>
-      <CitasContainer almacenamientoState={almacenamientoState}/>
     </div>
   );
 };
