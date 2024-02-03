@@ -9,10 +9,11 @@ const CitasContainer = () => {
     // almacenamientoCitas = JSON.parse(localStorage.getItem('consulta'));
     setAlmacenamientoCitas(JSON.parse(localStorage.getItem('consulta')) || []);
   }, []);
-  let deleteCard = (indice) => {
+  let deleteCard = (id) => {
     // console.log(almacenamientoCitas);
-    const citasFilter = almacenamientoCitas.filter((cita) => cita !== indice); //generar un id para poder eliminar las citas
+    const citasFilter = almacenamientoCitas.filter((cita) => cita.id !== id); //generar un id para poder eliminar las citas
     // setAlmacenamientoCitas(citasFilter);
+    // console.log(almacenamientoCitas);
     console.log(citasFilter);
   };
   return (

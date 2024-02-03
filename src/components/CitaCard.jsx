@@ -36,7 +36,7 @@ const CitaCard = ({citaDatos, indice, deleteCard}) => {
         </Form>
       </div>
       <div className="m-4 d-flex justify-content-end botonContainer">
-        <Button type="submit" onClick={() => deleteCard(indice)}>Borrar</Button>
+        <Button type="submit" onClick={() => deleteCard(citaDatos.id)}>Borrar</Button>
       </div>
     </div>
   );

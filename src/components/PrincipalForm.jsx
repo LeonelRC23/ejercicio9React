@@ -5,8 +5,15 @@ import { Formik } from 'formik';
 import '../styles/principalForm.css';
 
 const PrincipalForm = () => {
+  let generarId = () => {
+    let a = Date.now().toString(30);
+    let b = Math.random().toString(30).substring(2);
+    2;
+    return a + b;
+  };
   const [almacenamientoState, setAlmacenamientoState] = useState([]);
   let valuesForm = {
+    id: '',
     nombreMascota: '',
     nombreDueño: '',
     fecha: '',
@@ -49,6 +56,7 @@ const PrincipalForm = () => {
           }}
           onSubmit={(valores, { resetForm }) => {
             resetForm();
+            valores.id = generarId();
             const almacenamiento =
               JSON.parse(localStorage.getItem('consulta')) || [];
             if (almacenamiento.length == 0) {
