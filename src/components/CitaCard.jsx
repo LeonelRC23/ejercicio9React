@@ -3,7 +3,6 @@ import "../styles/citaCard.css";
 import { Button, Form } from "react-bootstrap";
 
 const CitaCard = ({citaDatos, indice, deleteCard}) => {
-  console.log(citaDatos);
   return (
     <div className="col-6 p-0 p-2 card">
       <div className="cardHeader d-flex py-3">

@@ -4,18 +4,16 @@ import CitaCard from './CitaCard';
 import PrincipalForm from './PrincipalForm';
 
 const CitasContainer = () => {
-  const [almacenamientoCitas, setAlmacenamientoCitas] = useState([]);
-  useEffect(() => {
-    // almacenamientoCitas = JSON.parse(localStorage.getItem('consulta'));
-    setAlmacenamientoCitas(JSON.parse(localStorage.getItem('consulta')) || []);
-  }, []);
+  const [almacenamientoCitas, setAlmacenamientoCitas] = useState(
+    JSON.parse(localStorage.getItem('consulta')) || []
+  );
   let deleteCard = (id) => {
-    // console.log(almacenamientoCitas);
-    const citasFilter = almacenamientoCitas.filter((cita) => cita.id !== id); //generar un id para poder eliminar las citas
-    // setAlmacenamientoCitas(citasFilter);
-    // console.log(almacenamientoCitas);
-    console.log(citasFilter);
+    const citasFilter = almacenamientoCitas.filter((cita) => cita.id !== id);
+    setAlmacenamientoCitas(citasFilter);
   };
+  useEffect(() => {
+    localStorage.setItem('consulta', JSON.stringify(almacenamientoCitas));
+  }, [almacenamientoCitas]);
   return (
     <div className='my-5 citasContainer'>
       <div className='stateCitasContainer'>
